@@ -55,6 +55,11 @@ jobs:
           cp -a /opt/Gmeek/backup ${{ github.workspace }} 
           cp /opt/Gmeek/blogBase.json ${{ github.workspace }} 
           
+      - name: Replace Header Links
+        run: |
+          sed -i 's|https://www.yolec-electronics.com//tag.html|https://www.yolec-electronics.com/products/|g' docs/index.html
+          sed -i 's|https://www.yolec-electronics.com//rss.xml|https://www.yolec-electronics.com/contact/|g' docs/index.html          
+          
       - name: update html
         run: |
           git config --local user.email "$(jq -r ".email" config.json)"
